@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  achievement: one
+  objectivable: one
+  objectivable_type: Objectivable
+
+two:
+  achievement: two
+  objectivable: two
+  objectivable_type: Objectivable
