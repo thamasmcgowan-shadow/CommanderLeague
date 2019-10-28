@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_12_114706) do
+ActiveRecord::Schema.define(version: 2019_10_28_143924) do
 
   create_table "achievements", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 2019_06_12_114706) do
     t.datetime "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "season_id"
+    t.index ["season_id"], name: "index_games_on_season_id"
+  end
+
+  create_table "leagues", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "objectives", force: :cascade do |t|
@@ -35,6 +44,28 @@ ActiveRecord::Schema.define(version: 2019_06_12_114706) do
     t.datetime "updated_at", null: false
     t.index ["achievement_id"], name: "index_objectives_on_achievement_id"
     t.index ["objectivable_type", "objectivable_id"], name: "index_objectives_on_objectivable_type_and_objectivable_id"
+  end
+
+  create_table "seasons", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "league_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["league_id"], name: "index_seasons_on_league_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "handle"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

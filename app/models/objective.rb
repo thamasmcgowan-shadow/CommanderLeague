@@ -19,11 +19,6 @@ class Objective < ApplicationRecord
   belongs_to :achievement
   belongs_to :objectivable, polymorphic: true
 
-  def name
-    achievement.name
-  end
+  delegate :description, :name, to: :achievement
 
-  def description
-    achievement.description
-  end
 end
